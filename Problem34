@@ -1,0 +1,25 @@
+# Project Euler 34: https://projecteuler.net/problem=34
+# 145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145
+# Find the sum of all numbers which are equal to the sum of the factorial of their digits.
+
+
+# Solves solution in less than 3 seconds
+import math, time
+fact=math.factorial
+
+start=time.time()
+print("running")
+
+curious=[]
+
+for num in range(100, 1_000_000):
+    str_num=str(num)
+    total=0 # store total within for loop so starts back at 0 each number
+    for digit in str_num: # get each digit, must do this as a string
+        digit=int(digit) 
+        total=total+fact(digit) #gets the factorial of each digit and adds to total
+        if (num==total):
+            print(num)
+            curious.append(num)
+print("sum:", sum(curious)) #40730
+print("Done", time.time()-start, "seconds") #Done 2.961 seconds   
