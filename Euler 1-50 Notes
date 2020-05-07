@@ -1,0 +1,16 @@
+# As of May 2020, I completed problems 1-50 Project Euler problems: https://projecteuler.net/archives
+
+# Here are ideas for improvement in the future:
+# Euler 2: Dynamic programming method?
+# Euler 14: Dynamic programming method?
+# Euler 18: Need to confirm if there is no top-down approach?
+# Euler 31: Try again sometime. Had to research answer. 
+# Euler 32: Takes 40 lines of code, could be cleaner?
+# Euler 35: Solution takes 100 seconds. Too slow!
+# Euler 37: Solution takes 43 seconds. Somewhat slow. 
+# Euler 38: Takes 40 lines of code. Could be cleaner?
+# Euler 44: Solution takes 86 seconds. Too slow!
+# Euler 46: Dynamic programming method?
+# Euler 50: Dynamic programming method?
+
+# Code should be posted here: https://github.com/ScottFrederickSchmidt/Project-Euler
