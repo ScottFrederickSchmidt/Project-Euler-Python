@@ -1,0 +1,28 @@
+# 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 
+# We can see that 28 is the first triangle number to have over five divisors.
+# What is the value of the first triangle number to have over five hundred divisors?
+
+# Solves solution within 3 seconds.
+import time
+import itertools
+start=time.time()
+
+def div(n):
+    count=0 #store a temp count for each number
+    for x in range(1, int(n**.5) ): # Check first half only
+        if n%x==0: # if there is a divider..
+            count=count+2 # there are two dividors
+    return count # need to check if 500 dividers
+
+num=0
+high=0 
+for i in itertools.count(1):  # 1 goes up by one
+    num=num+i # every new triangle will go up by 
+    temp=div(num) # divisor count of num
+    if temp>high: 
+        high=temp # store new high count
+        print(num, "has", temp) # program should be printing new max divisors
+    if (temp>500): 
+        print("more than 500!", num, temp, time.time()-start, "seconds") # 3 seconds! 
+        break # Once found end loop
+print("Done.") # Just making sure loop officially ended. Which it does. 
