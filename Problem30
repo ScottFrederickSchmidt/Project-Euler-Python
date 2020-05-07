@@ -1,0 +1,27 @@
+#Project Euler 30: https://projecteuler.net/problem=30
+#Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits:
+#1634 = 1^4 + 6^4 + 3^4 + 4^4
+#8208 = 8^4 + 2^4 + 0^4 + 8^4
+#9474 = 9^4 + 4^4 + 7^4 + 4^4
+#The sum of these numbers is 1634 + 8208 + 9474 = 19316.
+#Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
+
+# Solves correct solution in 2 seconds so I am satisified with my solution for now.
+import time
+start=time.time()
+lst=[]
+
+LIMIT=500_000
+
+for num in range(2, LIMIT): 
+    str_num=str(num)
+    total=0  # get a temporary total for each number
+    for digit in str_num: #get each number in digit
+        total=total+int(digit)**5 # square each digit into the total
+    if(total==num): #if total equals num
+        print(num)
+        lst.append(num) # add num to list
+summ=sum(lst) # get sum of the list
+print("Total:", summ, time.time()-start, "seconds") # Total: 443839 2.01125 seconds
+# This solution is potentially not best because you have to somewhat guess the LIMIT number. 
+# At some point, I will need to think of a solution that does not require guessing on where to end the LIMIT number.
