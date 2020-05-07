@@ -1,0 +1,42 @@
+# Project Euler 14: https://projecteuler.net/problem=14
+# The following iterative sequence is defined for the set of positive integers:
+# n → n/2 (n is even)
+# n → 3n + 1 (n is odd)
+# Using the rule above and starting with 13, we generate the following sequence:
+# 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+# It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. 
+# Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+# Which starting number, under one million, produces the longest chain?
+
+# Solves solution in 11 seconds without memoization 
+import time
+start=time.time()
+
+def coll(i):
+    count=0
+    while i!=1:
+        count=count+1
+        if i==1:
+            i=1
+        if i%2==0:
+            i=i/2
+        else:
+            i=3*i+1
+    return count
+
+max_i=0 # stores max i
+max_count=0 # stores max count
+i=600_000
+
+while i<1_000_000: 
+    coll_count=coll(i) # sends i to function to get count
+    if coll_count>max_count: # if function returns a bigger number...
+        max_i=i # current i is the biggest
+        max_count=coll_count # current count is max count
+        print(max_i, max_count) 
+    i=i+1 #go to next i
+        
+print(time.time()-start, "seconds", max_i, max_count)  # 14.26 seconds 837799 524
+# This way solves the problem using non-recursion. 
+# In order to get the result faster, one would need to use memoization.
+# I will be editing in the memoization solutioin way in shortly.
