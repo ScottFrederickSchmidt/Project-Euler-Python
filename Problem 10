@@ -1,0 +1,48 @@
+# Project Euler 10: https://projecteuler.net/problem=10
+# The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+# Find the sum of all the primes below two million.
+
+#Solution1: This solves the correct answer in 18 seconds:
+import time
+start=time.time()
+print("running..")
+
+primes=[2] #2 is only even prime number.
+n=3
+LIMIT=2_000_000 # stop at 2 million
+
+while n < LIMIT: 
+    s=int(n**.5)+1 # Sieves of E, only need to check first half of square numbers
+    for i in range(3, s): # try diviing starting with 3 until s (above)
+        if (n%i==0): 
+            break # not a prime, move onto next n
+    else:
+        primes.append(n) #add to prime number list
+    n=n+2 # No need to check even numbers, so skip by 2.
+        
+print(sum(primes), time.time()-start, "seconds") #142913828922 17.624 seconds
+# This above solution is my original solution. However, there is a faster way to solve this problem (below)
+
+
+#Solution 2 using Sieve of Era: Gets solution in under 2 seconds!
+import time
+start1=time.time()
+
+def sieves(n):
+    primes=[True]*n # prints x many True statements
+    primes[0]=False # 0 is always not a prime
+    primes[1]=False # 1 is always not a prime
+    for i in range(2, int(n**.5)+1 ): #check through all numbers through the square root of n
+        s=i*i
+        while s<n:
+            primes[s] = False # this number is False
+            s = s+i # looks through all numbers divisible by for example, 2 or 3 and makes them False
+    primes=[x for x in range(n) if primes[x]== True] # gets all remaining numbers that are True
+    print(sum (primes) , time.time()-start1, "seconds") # 142913828922 1.7085 seconds
+    
+sieves(2_000_000)
+
+# Sieves of E is so fast because it removes the number as soon as it is not a prime so it does not get checked again.
+# I originally did not create the second solution. I did slightly adapt it and create comments.
+# However, I am probably able to recreate it from memory if I tried. 
+# Source: # https://stackoverflow.com/questions/3939660/sieve-of-eratosthenes-finding-primes-python
