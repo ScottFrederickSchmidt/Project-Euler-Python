@@ -1,0 +1,9 @@
+# Euler 16: https://projecteuler.net/problem=16
+# 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+# What is the sum of the digits of the number 2^1000?
+
+# Gets correct solution in 0 seconds
+number=2**1000
+string_list=list(str(number))
+results = list(map(int, string_list)) # same concept in problem 13 that has details on using list(map)
+print(sum(results) ) # 1366
