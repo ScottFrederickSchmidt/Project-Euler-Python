@@ -1,0 +1,33 @@
+# Project Euler 36: https://projecteuler.net/problem=36
+# The decimal number, 585 = 1001001001 (binary), is palindromic in both bases.
+# Find the sum of all numbers, less than one million, which are palindromic in base 10 and base 2.
+# (Please note that the palindromic number, in either base, may not include leading zeros.)
+
+import time
+start=time.time()
+
+# checks if palindrone
+def pali(n):
+    if str(n)==str(n)[::-1]:
+        return True
+    else:
+        return False
+
+# check if palindrone in base
+def pali_bin(n):
+    b=bin(n)
+    b = b[2:] # deletes first two index, 0b
+    if str(b)==str(b)[::-1]:
+        return True
+    else:
+        return False
+
+n=1
+total=0
+while n<1_000_001: # check first one million numbers
+    if pali(n): # if true
+        if pali_bin(n): # if true
+            total=total+n # add that num, n to total
+            print("double pali:", n)
+    n=n+1 # whether true or false go to next num, n
+print("total:", total, time.time()-start, "seconds") # total: 872187 0.76069 seconds
