@@ -1,0 +1,33 @@
+# Project Euler 39: https://projecteuler.net/problem=39
+# If p is the perimeter of a right angle triangle with integral length sides, {a,b,c},
+# there are exactly three solutions for p = 120.
+# {20,48,52}, {24,45,51}, {30,40,50}
+# For which value of p ≤ 1000, is the number of solutions maximised?
+
+# Gets solution in 17 seconds!
+import math, time
+start=time.time()
+
+max_count=0
+max_p=0
+perimeter=121
+LIMIT=1001
+while perimeter<LIMIT: #loop through each perimeter 
+    temp_count=0
+    for a in range(1, perimeter):
+        for b in range(1, perimeter):
+            c=math.sqrt((a*a)+(b*b) ) # right triangle formula
+            if b>a or a+b+c>perimeter: # this line speeds up solution by 400 seconds! 
+                break #will move onto next loop if sums go over
+            if a+b+c==perimeter:
+                temp_count=temp_count+1
+                #print(a, b, c, time.time()-start, "seconds")
+                if temp_count>max_count:
+                    max_p=perimeter
+                    max_count=temp_count
+                    print(max_count, max_p, a, b, c, time.time()-start, "seconds")
+    perimeter=perimeter+1 # move onto next perimeter once for loop has ended
+print("Done.", max_count, max_p, time.time()-start) #Done. 8 840 17.981
+# My original solution without the if b>a took 450 seconds.
+# My second original solution without the a+b+c took 170 seconds.
+# This was a fun solution because I had the correct answer but had to think how to make it faster.
