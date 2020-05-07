@@ -1,0 +1,21 @@
+# Euler 48: https://projecteuler.net/problem=48
+# The series, 1^1 + 2^2 + 3^3 + ... + 1010 = 10405071317.
+# Find the last ten digits of the series, 1**1 + 2**2 + 3**3 + ... + 10001000.
+
+# Solves Sample Problem:
+sample=0
+for s in range(1, 11):
+    sample=sample+(s**s)
+print("sample problem solution:", sample) # 10405071317 correct answer as given in sample.
+
+# Solves final solution in 0.0156 seconds:
+import time
+start=time.time()
+
+total=0
+
+for i in range(1, 1000):
+    total=total+(i**i) #multiplies new square into total
+
+total=str(total)
+print(total[-10:], time.time()-start, "seconds") # prints last 10 digits only
