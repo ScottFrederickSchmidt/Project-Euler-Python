@@ -1,0 +1,52 @@
+# Project Euler 50: https://projecteuler.net/problem=50
+# The prime 41, can be written as the sum of six consecutive primes: 41 = 2 + 3 + 5 + 7 + 11 + 13 
+# This is the longest sum of consecutive primes that adds to a prime below one-hundred.
+# The longest sum of consecutive primes below one-thousand that adds to a prime, contains 21 terms, and is equal to 953.
+# Which prime, below one-million, can be written as the sum of the most consecutive primes?
+
+
+# Solves solution: 997651 within 8.5 seconds
+import time
+start=time.time()
+print("running..")
+
+#Gets Primes Below One Million using Sieves of Era:
+def sieves(n):
+    primes=[True]*n # prints x many True statements
+    primes[0]=False # 0 is always not a prime
+    primes[1]=False # 1 is always not a prime
+    for i in range(2, int(n**.5)+1 ): #check through all numbers through the square root of n
+        s=i*i
+        while s<n:
+            primes[s] = False # this number is False
+            s = s+i # looks through all numbers divisible by for example, 2 or 3 and makes them False
+    primes=[x for x in range(n) if primes[x]== True] # gets all remaining numbers that are True
+    return primes
+
+primes=sieves(1_000_000)    
+max_count=0 #stores max count 
+max_prime=0 #stores max prime with current highest count
+skip=0 # Skip will become one greater every while loop to skip another index within primes.
+i=0 # keeps track of what prime number within primes
+run=True #Run will become False at very end to shut off program.
+
+while run is True:
+    total=0 # These are temp values, should restart everytime.
+    count=0 # Start back at 0.
+    while i< len(primes) and total<primes[-1]: #stop loop if total is higher one million
+        p=primes[i] # get current prime
+        total=total+p # add current prime to temp value total
+        count=count+1 # keep track of how many prime numbers have been added
+        if total in primes: # if current total is a prime...
+            if count>max_count: # if current number of consective primes is more than current..
+                max_prime=total # Update new max prime
+                max_count=count # Update new max count
+                print("new max:", total, count, " prime", p)
+        i=i+1
+    skip=skip+1 #Deletes one more index every time
+    i=skip # Starts index at one higher level
+    if(skip==20):   #check first 20 loops? Can make skip bigger or smaller.
+        run=False   #Shut off program. 
+        
+print("Done!", max_prime, time.time()-start, "seconds") # Program is finished and should print final answer 
+# There is a dynamic programming way to solve this program I believe. More search needed for a second possible solution.
