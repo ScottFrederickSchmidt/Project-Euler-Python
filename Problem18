@@ -1,0 +1,89 @@
+#Project Euler 18 and 67: https://projecteuler.net/problem=18
+#By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
+#Find the maximum total from top to bottom of the triangle below:
+#04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
+# NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route.
+#However, Problem 67, is the same challenge with a triangle containing one-hundred rows;
+#it cannot be solved by brute force, and requires a clever method! 
+#############################################
+
+
+# Originally, I had to do lots of research on this problem
+# I became aware of dynamic programming for the first time during problem 67 because brute force is impossible.
+# Note: The same dynamic programming solution will work for both 18 and 67.
+# This problem is difficult to explain over comments, and I plan on making a YouTube video on it.
+# Basically, for this problem you start at the bottom, at the number 63. 
+# 63 will take the larger of the two bottom numbers, 4 and 62. 
+# 62 is bigger so 63 now becomes 125=63+62. 
+# 66 will take the larger of the two numbers 98 become 66+98. 
+# This process repeats until the last number standing at top becomes the biggest possible number.
+# Trying to add every solution for problem 68 would take around 20 billion years.
+# This is why dynamic programming and memoization is so important. 
+# Thus why this MIT dynamic coding video has 1.3million YouTube views: https://www.youtube.com/watch?v=OQ5jsbhAv_M
+
+# Solves correct solution in less than one second using bottom-up approach:
+bottom_up=[
+ [75],
+ [95, 64],
+ [17, 47, 82],
+ [18, 35, 87, 10],
+ [20, 4, 82, 7, 65],
+ [19, 1, 23, 75, 3, 34],
+ [88, 2, 77, 73, 7, 63, 67],
+ [99, 65, 4, 28, 6, 16, 70, 92],
+ [41, 41, 26, 56, 83, 40, 80, 70, 33],
+ [41, 48, 72, 33, 47, 32, 37, 16, 94, 29],
+ [53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14],
+ [70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57],
+ [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],
+ [63, 66, 4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
+ [4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23]]
+
+for x in range(len(bottom_up)-1,-1,-1): #Gets the numbers without the last top diagnal row.
+    for y in range(0,x):
+        #print(x, y)
+        bottom_up[x-1][y]+=max(bottom_up[x][y],bottom_up[x][y+1]) #grabs the max num of the above two num and becomes that num
+print ("final solution:", tri_num[0][0]) # The very top number should be the max number now. 
+
+
+
+##########################################
+# Euler 18: A top-down approach works for the original sample problem.
+# However, for Euler 18, it gets 1070 for Euler 18 when the answer is 1074. 
+# After some research, it seems that a top-down approach does not work and you must be a bottom-up approach.
+
+sample=[
+[3], 
+[7, 4],
+[2, 4, 6],
+[8, 5, 9, 3]]
+
+for x in range(len(sample)): # Will be one number less than length
+    for y in range(0, x):
+        (sample[x][y])+=max(sample[x-1][y], sample[x-1][y-1] ) #always grabs the max of the 2 numbers below.
+        #print (sample[x][y], sample[x-1][y], sample[x-1][y-1])
+print("Sample solution answer:", max(sample[-1]) ) # Prints biggest number of last row which is 23. 
+
+top_down=[
+ [75],
+ [95, 64],
+ [17, 47, 82],
+ [18, 35, 87, 10],
+ [20, 4, 82, 7, 65],
+ [19, 1, 23, 75, 3, 34],
+ [88, 2, 77, 73, 7, 63, 67],
+ [99, 65, 4, 28, 6, 16, 70, 92],
+ [41, 41, 26, 56, 83, 40, 80, 70, 33],
+ [41, 48, 72, 33, 47, 32, 37, 16, 94, 29],
+ [53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14],
+ [70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57],
+ [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],
+ [63, 66, 4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
+ [4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23]]
+
+for x in range(len(top_down) ): # Will be one number less than length
+    for y in range(0, x):
+        # print (euler18[x][y], euler18[x-1][y], euler18[x-1][y-1] )
+        (top_down[x][y])+=max(top_down[x-1][y-1], top_down[x-1][y] ) #always grabs the max of the 2 numbers above.
+        #print(euler18[x][y])
+print("Top-down solution:", max(top_down[-1]) ) #Euler18 solution: 1070. Correct answer is 1074.
