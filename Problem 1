@@ -1,0 +1,53 @@
+# Project Euler 1: https://projecteuler.net/problem=1
+# If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+# Find the sum of all the multiples of 3 or 5 below 1000.
+###################
+
+
+# Solution 1: This is the most efficient way and final answer! 
+# This is the only very easy problem in Project Euler:
+import time
+start=time.time()
+
+total=0
+for i in range(3, 1000):
+    if (i%3==0 or i%5==0):  # does not count duplicates like 15 this way.
+        #print(i)  
+        total=total+i
+print(total, time.time()-start, "seconds") # prints 233168 0.0 seconds 
+
+
+######################
+# Solution 2: This was my original solution from a long time ago:
+# At the time, I did not think how to solve the problem in the most efficient way. 
+# I was simply trying to get the correct answer. 
+# Looking back, it is amazing to see how much more efficient my coding and thought process has become.  
+x=0
+y=0
+list1 = []
+list2 = []
+
+for x in range(400):
+    x=x+1
+    #print(x)
+    m1=x*3
+    if m1<1000:
+        list1.append(m1)
+        #print(list1)
+
+for y in range(300):
+    y=y+1
+    m2=y*5
+    if m2<1000:
+        list2.append(m2)
+
+final_list=list1+list2
+#print(final_list)
+    
+set_list=set(final_list) #gets rid of doubles like 15. 
+length=len(set_list)
+
+for x in range(length):
+    total_count=sum(set_list) 
+
+print(total_count) #The second solution is very lengthy and inefficient. Solution 1 is clearly the better method!
