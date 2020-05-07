@@ -1,0 +1,17 @@
+# Project Euler 3: https://projecteuler.net/problem=3
+# The prime factors of 13195 are 5, 7, 13 and 29.
+# What is the largest prime factor of the number 600851475143 ?
+
+import time
+start=time.time()
+print("running..")
+
+n=600851475143
+div=2
+
+while div*div<n: # only need to check the first sqare root numbers (Sieves of Eratosthenes)
+    while n%div==0: # Example: will keep dividing by 2 until odd number.
+        n=n/div 
+    div=div+1 #try next biggest dividor (i.e 2 will become 3)
+        
+print("Done.", int(n) , time.time()-start, "seconds" ) # Done. 6857 0.0 seconds
