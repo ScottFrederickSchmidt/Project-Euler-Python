@@ -1,0 +1,31 @@
+# Project Euler 31: https://projecteuler.net/problem=31
+# 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p).
+# 1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
+# How many different ways can £2 be made using any number of coins?
+
+
+# Solves solution in 0.0774 seconds. 
+import time
+
+start=time.time()
+count=1 #start a one because of 200
+
+# The key to this problem is to imagine each of the ranges to be their max number. 
+# Each time, the next range will never go above 200.
+# Evenually, the ranges will make 200 which could happen at the very last loop.
+for a in range(3): # 2 is max because 2x100=100 
+    range1=int( 1+(200-100*a)/50) # if a is max of 2, rest of ranges will be 0 mathematically. So cannot go above 200.
+    for b in range(range1):
+        range2=int(1+(200- 100*a -50*b  )/20 ) 
+        for c in range(range2):
+            range3=int(1+(200- 100*a -50*b -c*20 )/10 )
+            for d in range(range3):
+                range4=int(1+(200- 100*a -50*b -c*20 -d*10 )/5 )
+                for e in range(range4):
+                    range5=int(1+(200- 100*a -50*b -c*20 -d*10 - e*5 )/ 2 )
+                    for f in range(range5):
+                        range5=int(1+(200- 100*a -50*b -c*2 )/1 )
+                        count=count+1 # add to current count
+
+print("Done.", count, time.time()-start, "seconds") # done 73682 0.0774 seconds
+# This problem was challenging, and I should attempt it again from sratch for more practice.
