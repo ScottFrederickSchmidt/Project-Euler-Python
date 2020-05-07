@@ -1,0 +1,23 @@
+# Project Euler 7: https://projecteuler.net/problem=7
+# The first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+# What is the 10 001st prime number?
+
+# Gets final solution: 104743 in 0.31242 seconds
+import time
+start=time.time()
+
+primes=[2] 
+n=3
+count=1
+limit=10001
+
+while count<limit: #should stop at 10001 prime number.
+    for j in range(3, int(n**.5)+1): # Only need to checkup to the square root.
+        if (n%j==0): # if a number is divisible, not prime. 
+            break; # if one number is divisible, check next numbers.
+    else:
+        count=count+1 #keeps track of how many prime numbers
+        primes.append(n) #should add prime numbers
+    n=n+2 # never need to check even numbers
+    
+print(primes[-1], time.time()-start, "seconds") # -1 to get last number in list.
