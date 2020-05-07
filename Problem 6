@@ -1,0 +1,14 @@
+# Project Euler 6: https://projecteuler.net/problem=6
+# Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+
+import time
+start=time.time()
+
+total=0
+total2=0
+for x in range(0, 101):
+    total=total+ x*x # square first. 
+    total2=total2+x # get sum and square later. 
+
+sqaure_sum=(total2**2) #This one squares sum at very end. 
+print(sqaure_sum-total, time.time()-start, "seconds") #25164150 0.0 seconds
