@@ -1,0 +1,23 @@
+# Euler 20: https://projecteuler.net/problem=20
+# 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800
+# Find the sum of the digits in the number 100!
+
+# Solves Sample Problem
+sample_total=10
+s=9
+while s>1:
+    sample_total=sample_total*s
+    s=s-1
+print("Sample problem total:", sample_total) # 3628800
+
+# Solves Solution, gets 648 in less than a second
+total=100 
+i=99
+while i>1: # Stop after i gets to 2
+    total=total*i
+    i=i-1 # get 100, then 99, go back one. 
+#print(total)
+
+list_total=list(str(total))
+results = list(map(int, list_total)) #Same concept in problem 13 and 16.
+print("final solution sum:", sum(results)) #648 which is correct solution
