@@ -1,0 +1,52 @@
+#Project Euler28:
+# Starting with the number 1 and moving to the right in a clockwise direction a 5 by 5 spiral is formed as follows:
+# 21 22 23 24 25
+# 20  7  8  9 10    
+# 19  6  1  2 11    
+# 18  5  4  3 12    
+# 17 16 15 14 13
+
+#It can be verified that the sum of the numbers on the diagonals is 101.
+#What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
+
+import time
+start=time.time()
+
+i=1 # circle starts at 1
+skip=2 # circle skips by 2 initially
+stop=1001*1001 # this is the total amount of numbers
+total=1 # must include initial i starting value
+count=0 # holds permanent count loop
+
+while i<stop:
+    i=i+skip # finds next number to be added to total
+    count=count+1 # at four count the clock becomes gap becomes bigger
+    total=total+i #adds new number to total
+    if count==4:
+        count=0 #must set count back to 0
+        skip=skip+2 # after 4 numbers, skip by 2 more as circle gets bigger
+        # print("skip", skip)  # make sure it is skipping correctly
+
+print("Final total solution:", total, time.time()-start, "seconds") # gets correct solution in 0.0 seconds
+
+
+################################################
+#Special Notes (failed original attempt is below):
+# My original attempt I tried using a for loop. This code fails because skip cannot be incrimented within a for loop.
+# Skip is stuck at 2 forever and will not inciment by an additional 2 everytime:
+
+# skip=2 # circle skips by 2 initially
+# stop=1001*1001 # this is the total amount of numbers
+# sample=27
+# total=1 # must include initial i starting value
+# count=0 # holds permanent count loop
+
+# for i in range(1, sample, skip):
+#     total=total+i
+#     count=count+1
+#     print(i) #prints numbers 1, 3, 5, 7, 9, 11, etc.
+#     if count==4:
+#         skip=skip+2
+#         #print("skip:", skip)
+#         count=0
+# print("Final total solution:", total) 
