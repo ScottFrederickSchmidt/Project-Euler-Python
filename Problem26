@@ -1,0 +1,38 @@
+#Project Euler 26: https://projecteuler.net/problem=26
+#A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to 10 are given:
+# 1/2= 0.5  1/3=0.(3)  1/4= 0.25  1/5= 0.2  1/6=0.1(6)  1/7=0.(142857)  1/8= 0.125
+#Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be seen that 1/7 has a 6-digit recurring cycle.
+#Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
+
+
+# Correct solution in 0 seconds
+# While loop seems easier than a for loop, which I attempted first
+import time
+start=time.time()
+
+max_count=0
+max_digit=0
+
+x=1
+LIMIT=1000 # this makes code easier to read or change later (read on Stackoverflow)
+while x<LIMIT: # stops at 1000
+    dec=set() # stores a temporary decimal placeholder for each new num
+    num=1/x # get decimal form
+    str_num=str(num) # turns int into string to cut off first 2 characters in next step:
+    str_num=str_num[2:] # deletes the 0 and period which is essential to be able to add a 0 decimal later. 
+    for n in str_num: # check every digit in num
+        if n not in dec: #check if decimal is not repeating
+            dec.add(n) #add new digit
+        if n in dec: 
+            x=x+1 # move onto next number
+            
+    if len(dec) >=max_count: # found a new max
+        max_count=leng # store new max length for future comparision
+        max_digit=x # this num becomes new max
+        max_dec=dec
+    x=x+1 # at end incriment x no matter what whether statement is true or false
+    
+print("Solution:", max_digit, "count:", max_count, "  ", time.time()-start, "seconds") # 983 count: 10    0.0 seconds
+# This problem was really challenging at first. 
+# Deleting the 0 int before decimals was a crucial step that needed to be done to solve this problem with the method I have.
+# Other people seemed to solve this problem much differently.
