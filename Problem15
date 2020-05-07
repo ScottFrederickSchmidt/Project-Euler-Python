@@ -1,0 +1,15 @@
+# Project Euler 15: https://projecteuler.net/problem=15
+# How many such routes are there through a 20×20 grid?
+
+
+# This problem required research to get the latice path formula: 2*factorial(x) / fact(x)*fact(x)
+# Once that is found, the solution becomes rather easy. 
+import math, time
+
+start=time.time()
+fact=math.factorial
+
+x=fact(40)
+y=fact(20)
+z=y*y
+print( int(x/z), time.time()-start, "seconds") # 137846528820 0.0 seconds
