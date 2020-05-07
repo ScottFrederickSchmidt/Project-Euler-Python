@@ -1,0 +1,22 @@
+# Project Euler4: https://projecteuler.net/problem=4
+# A palindromic number reads the same both ways. 
+# The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+# Find the largest palindrome made from the product of two 3-digit numbers.
+
+import time
+start=time.time() 
+
+def pali(i):
+    i=str(i)
+    if i==i[::-1]: #reverses string
+        return True
+
+max_p=0 #store current max palindrone
+    
+for i in range(10, 1000):
+    for j in range(10, 1000):
+        p=j*i #named it p for product
+        check=pali(p) #sends every possible number through the palidrone function
+        if check is True and p>max_p: #only if both these are true...
+            max_p=p #then p is the new max pali
+print(max_p, time.time()-start, "seconds") #906609 0.7498 seconds
