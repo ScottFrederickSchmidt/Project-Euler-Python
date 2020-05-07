@@ -1,0 +1,61 @@
+# Project Euler 38: https://projecteuler.net/problem=38
+# Take the number 192 and multiply it by each of 1, 2, and 3:
+# 192 × 1 = 192
+# 192 × 2 = 384
+# 192 × 3 = 576
+
+#By concatenating each product we get the 1 to 9 pandigital, 192384576. We will call 192384576 the concatenated product of 192 and (1,2,3)
+#The same can be achieved by starting with 9 and multiplying by 1, 2, 3, 4, and 5, giving the pandigital, 918273645, which is the concatenated product of 9 and (1,2,3,4,5).
+#What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1,2, ... , n) where n > 1?
+
+#Sample Problem Solved:
+sample=''
+for n in range(1, 6):
+    s=str(n*9)
+    sample=sample+s
+print("Solves sample solution:", sample) # prints 918273645
+
+
+# Gets Correct Answer in 0.0533 seconds! 
+# Save as template, gets right answer with 0's. Need to also add comments.
+# Final Solution will be below.
+import time
+start=time.time()
+print("running..")
+
+def check(s):
+    pali=[]
+    for n in s:
+        pali.append(n)
+        if n is '0': # cannot have a zero
+            return False
+            break
+            
+    # a different way I thought of to check for pandital       
+    for x in range(0, 10):
+        x=str(x)
+        c=pali.count(x) 
+        if c>1: # if the count for a number is more than 1
+            return False
+            break
+        
+    else: # must be tabbed right under the for loop, if it ends with no false found
+        return True # return True
+
+pand=''
+pans=[]
+for n in range(1, 10_000): #Finds all possible combos with 4 digits x nums 1 through 5
+    for m in range(1, 6):  
+        p=str(n*m)
+        pand=pand+p
+        #print(pand)
+        if len(pand)>9: # needs to be exactly 9 numbers
+            break
+        if len(pand)==9: 
+            c=check(pand) # will send pand through function only if 9 numbers
+            if c:
+                pans.append(pand)
+                print(pand, n, m)
+    pand='' #restart pand to 0 after checking possible pandigital
+    
+print( max(pans), "Done!", time.time()-start, "seconds") # 932718654 Done! 0.0518 seconds
