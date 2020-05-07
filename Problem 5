@@ -1,0 +1,24 @@
+# Project Euler 5: https://projecteuler.net/problem=5
+# 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+# What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+# Solution1: Correct solution in 68 seconds. 
+import time
+start=time.time()
+print("running..")
+
+def divide(n):
+    for div in range(3, 21): # Do not need to check 1 or 2.
+        if n % div!=0: # Found a divisble number
+            return False
+    return True # range loop could not find a false div
+
+n=20
+solution=0
+while True:
+    if divide(n) is True: #found a number divible 1-20
+        solution=n
+        break # will stop loop
+    n=n+2 #only need to check even numbers
+print("Done.", solution, time.time()-start, "seconds") #Done. 232792560 68.0987 seconds
+# Will create a faster second solution shortly! 
