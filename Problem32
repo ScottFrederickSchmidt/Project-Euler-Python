@@ -1,0 +1,59 @@
+# Project Euler 32: https://projecteuler.net/problem=32
+# We shall say that an n-digit number is pandigital if it makes use of all the digits 1 to n exactly once;
+# for example, the 5-digit number, 15234, is 1 through 5 pandigital.
+# The product 7254 is unusual, as the identity, 39 × 186 = 7254, containing multiplicand, multiplier, and product is 1 through 9 pandigital.
+# Find the sum of all products whose multiplicand/multiplier/product identity can be written as a 1 through 9 pandigital.
+# HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum
+
+
+# FINAL SOLUTION! gets correct answer in 17 seconds! 
+import time
+start=time.time()
+
+# This function checks if given number, n contains only numbers 1-9 one time each.
+def check(n):
+    lst=set()
+    str_n=str(n)
+    for i in str_n: # check each digit in n 
+        if i in lst or i=='0': # important to make sure digit is not a zero, either
+            return False
+            break
+        else:
+            lst.add(i)
+    return True # if for look never returned False, n must be True.
+
+products=set() # use a set so sums are included only once as directions state in the hint
+
+for i in range(10, 98):
+    for j in range(123, 987):
+        product=i*j
+        if product>9876: # this line speeds up algo from 60 seconds to 6 seconds!! 
+            break
+        for p in range(1234, 9876):
+            if product==p:
+                #print(product)
+                num=str(i)+str(j)+str(p)
+                num=int(num)
+                if check(num):
+                    print("found pali", i, j, p)
+                    products.add(product)
+
+# same thing but checks if there are any products that start with a single digit
+for i in range(1, 9):
+    for j in range(1234, 9876):
+        product=i*j
+        if product>9876: # this line speeds up algo from 60 seconds to 6 seconds!! 
+            break
+        for p in range(1234, 9876):
+            if product==p:
+                #print(product)
+                num=str(i)+str(j)+str(p)
+                num=int(num)
+                if check(num): # if true:
+                    print("found pali", i, j, p)
+                    products.add(product) # add original product to list
+                    
+print( sum(products), time.time()-start, "seconds" ) # 45228 17.565 seconds
+# Will evenually edit in a solution that solves problem within a few seconds.
+# This solution also could be improved because it assumed there is no number product number bigger than 9876.
+# Therefore, there could be a dynamic solution that checks more possibilities. 
