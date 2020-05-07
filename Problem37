@@ -1,0 +1,64 @@
+# Project Euler 37: https://projecteuler.net/problem=37
+# The number 3797 has an interesting property. Being prime itself, it is possible to continuously remove digits from left to right, and remain prime at each stage: 3797, 797, 97, and 7. Similarly we can work from right to left: 3797, 379, 37, and 3.
+# Find the sum of the only eleven primes that are both truncatable from left to right and right to left.
+# NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
+
+# Gets correct solution in 43 seconds. Will create a faster solution soon:
+import time
+start=time.time()
+print("running")
+
+# Sieves prime generator used from problem 7:
+def sieves(n):
+    primes=[True]*n # prints x many True statements
+    primes[0]=False # 0 is always not a prime
+    primes[1]=False # 1 is always not a prime
+    for i in range(2, int(n**.5)+1 ): #check through all numbers through the square root of n
+        s=i*i
+        while s<n:
+            primes[s] = False # this number is False
+            s = s+i # looks through all numbers divisible by for example, 2 or 3 and makes them False
+    primes=[x for x in range(n) if primes[x]== True] # gets all remaining numbers that are True
+    return primes
+    
+primes=sieves(800_000)
+
+# check each prime num:
+delete=set()
+circles=set()
+
+for num in primes: # get each prime
+    # put within for loop so will reset each new num
+    rotate=set()
+    str_num=str(num)
+    leng=len(str_num)
+    for i in range (1, leng): # check each digit, int within primes
+        p=str_num[i:]
+        p2=str_num[:i]
+        p=int(p)
+        p2=int(p2)
+        rotate.add(p)
+        rotate.add(p2)
+        #print("rotate", rotate, num) # was used as a test to see if rotate works
+        
+    for x in rotate:
+        if x not in primes:
+            delete.add(num) # rotate is not a prime
+            #print(x, "not in primes, delete num", num,  delete)
+            break # if one is not a prime, move onto next num in primes
+            
+# Using remove immediately causes problems. See special notes section1.
+for circle in primes:
+    if circle not in delete: # if in delete needs to not be included
+        circles.add(circle)
+        print(circle) 
+    
+total=(sum(circles))-17 # Must minus 17 because 2, 3, 5, 7 do not count 
+print("done", total, time.time()-start, "seconds") # done 748317  43 seconds
+# Will find and post a faster solution later. One major issue is in the notes.
+
+###Special Notes:
+# Using remove during a loop is like "trying to change a tire while driving". It will not delete a second true index.
+# Therefore, I had to put all the numbers in the delete and check the circle for primes again which is really slow.
+# Need to find a better method. Will post a new solution soon but for now this gets the correct answer. 
+# https://stackoverflow.com/questions/6260089/strange-result-when-removing-item-from-a-list
