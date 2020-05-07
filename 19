@@ -1,0 +1,27 @@
+# Euler 19:  https://projecteuler.net/problem=19 
+# A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+# How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+
+#This solution gets the correct answer in 0 seconds.
+#Using the datetime import allows the program to not have to worry about leap years.
+
+import datetime, time
+start=time.time()
+
+sunday=0 #start count at 0
+year=1901 #start year at 1901
+month=1 
+
+while (year<2001): #stop once 2001 comes
+    d1 = datetime.date(year, month, 1) # will always be 1 because first of month.
+    w=d1.weekday() # this gets the day of the week
+    if (w==6): # 6 is sunday
+        sunday=sunday+1 # add to sunday count
+    if(month<13): # cannot be greater than 13
+        month=month+1 # goes to next month
+    if(month==13): # finished the 12 months...
+        year=year+1 # goes to next year
+        month=1 # start at first of month again.
+
+print(sunday, time.time()-start, "seconds") # 171 0.0 seconds
+# There is also a way to do this solution using pandas which I will be editing in later! 
