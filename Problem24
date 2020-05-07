@@ -1,0 +1,21 @@
+# Project Euler 24: https://projecteuler.net/problem=24
+# 3124 is one possible permutation of the digits 1, 2, 3 and 4. 
+#  The lexicographic permutations of 0, 1 and 2 are: 012   021   102   120   201   210
+# What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
+
+# gets solution in 0.218 seconds
+from itertools import permutations
+import time
+
+start=time.time()
+count=0 # keep track of the count 
+
+nine=permutations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+for x in nine: # goes through all possibilities 
+    count=count+1 # add to the count
+    if(count==1_000_000): #when a million
+        x=str(list(x) )
+        x=x.replace(",","") # Deletes the commas
+        print("Solution:", x) 
+        print(time.time()-start, "seconds")
+        break #stops for loop
