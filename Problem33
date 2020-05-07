@@ -1,0 +1,51 @@
+# Project Euler 33: https://projecteuler.net/problem=33
+# The fraction 49/98 is a curious fraction, as an inexperienced mathematician in attempting to simplify it may incorrectly believe that 49/98 = 4/8, which is correct, is obtained by cancelling the 9s.
+# We shall consider fractions like, 30/50 = 3/5, to be trivial examples.
+# There are exactly four non-trivial examples of this type of fraction, less than one in value, and containing two digits in the numerator and denominator.
+# If the product of these four fractions is given in its lowest common terms, find the value of the denominator.
+
+#This successfully solves the problem within 0 seconds.
+import time
+
+start=time.time()
+products=1 #starts at 1 to get the product. A sum would start at 0. 
+
+for both in range(1, 10): # this number will be on top and bottom.
+    str_both=str(both)
+    for num in range(1, 10): # always top number
+        str_num=str(num)
+        for den in range(1, 10): #always bottom number
+            str_den=str(den)
+            normal=num/den #this is the fraction without both. 
+            if normal<1: # this drastically speeds up solution, only checks valid fractions
+                
+                # only two possible tops
+                top=int(str_num+str_both) 
+                top2=int(str_both+str_num)
+                
+                # only two possible bottoms
+                bot=int(str_both+str_den) 
+                bot2=int(str_den+str_both)
+
+                # 2 tops by 2 bottoms: only four possible fractions:
+                fraction=top/bot 
+                fraction2=top2/bot
+                fraction3=top/bot2
+                fraction4=top2/bot2
+            
+                if fraction<1 and fraction==normal:
+                    print(num, both, den, fraction, normal)
+                    products=products*normal # multiply product into products..
+                if fraction2<1 and fraction2==normal:
+                    print(num, both, den, fraction2, normal)
+                    products=products*normal
+                if fraction3<1 and fraction3==normal:
+                    print(num, both, den, fraction3, normal)
+                    products=products*normal
+                if fraction4<1 and fraction4==normal:
+                    print(num, both, den, fraction4, normal)
+                    products=products*normal
+
+print("Four fraction products is:", products)
+print(time.time()-start, "seconds") # returns 16/64 (1/4) both are .25 and 26/65 (2/5). Both are .4
+#Other solutions can do the problem in many less lines. But this way is somewhat simple and solves the answer instantly.
