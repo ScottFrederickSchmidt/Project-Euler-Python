@@ -4,6 +4,7 @@
 
 # Here are ideas for improvement in the future:
 # Euler 2: Dynamic programming method?
+# Euler 5: Solution takes 68 seconds. Too slow!
 # Euler 14: Dynamic programming method?
 # Euler 18: Need to confirm if there is no top-down approach?
 # Euler 31: Try again sometime. Had to research answer. 
