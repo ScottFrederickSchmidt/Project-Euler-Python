@@ -1,0 +1,37 @@
+# Project Euler 8: https://projecteuler.net/problem=8
+# See link above to see the 1000 digit number. Equal to num in solution below.
+# Find the thirteen adjacent digits in the 1000-digit number that have the greatest product
+# What is the value of this product?
+
+
+# Gets correct solution in 0.0312 seconds.
+# There might be a way to do in less lines of code, but the algo is very quick.
+import time
+start=time.time()
+num='7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450'
+i=0
+biggest=0
+
+# once i becomes 1 bigger, will move onto next 13 numbers
+while i<len(num)-13: # will stop once i gets to the last 13 numbers toward the end.
+    one=num[0+i]
+    two=num[1+i]
+    three=num[2+i]
+    four=num[3+i]
+    five=num[4+i]
+    six=num[5+i]
+    seven=num[6+i]
+    eight=num[7+i]
+    nine=num[8+i]
+    ten=num[9+i]
+    eleven=num[10+i]
+    twelve=num[11+i]
+    thirteen=num[12+i]
+    mult=int(one)*int(two)*int(three)*int(four)*int(five)*int(six)*int(seven)*int(eight)*int(nine)*int(ten)*int(eleven)*int(twelve)*int(thirteen)
+    i=i+1 # Next time will check the next set of numbers without the next first index. 
+    if mult>biggest:
+        biggest=mult # store the biggest current num
+        print(biggest) # not required but makes sure the program is still running.
+
+print("Done.", biggest, time.time()-start, "seconds") # Done. 23514624000 0.0312 seconds
+# Note: Must be -13; otherwise, it will throw an index error at the end. 
