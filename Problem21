@@ -1,0 +1,39 @@
+# Project Euler 21: https://projecteuler.net/archives
+# the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. 
+# The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+# Evaluate the sum of all the amicable numbers under 10000.
+
+# Solves solution in 9 seconds without memoization. 
+import time
+start=time.time()
+
+num=1
+found=set() # make sure no same number in twice. 
+
+while num<10_000: #will stop at 10,000
+    total=0
+    total2=0
+    a=[]
+    a2=[]
+
+    for x in range(1, num):
+        if num%x==0:
+            a.append(x) #add divisors to a temp list
+    total=sum(a) # sum of first divisors
+
+    for y in range(1, total):
+        if total%y==0:
+            a2.append(y)
+    total2=sum(a2) 
+    
+    if num==total2 and num!=total: #if original num is equal to sum of divisors..
+        found.add(num) 
+        found.add(total)
+        print(num, total)
+    num=num+1 # check next number whether its true or false
+        
+print(found) # {1184, 6368, 5564, 5020, 2924, 284, 6232, 1210, 220, 2620}
+found_sum=sum(found) # gets sum
+print("Answer! Sum is:", found_sum, time.time()-start, "seconds") #answer! Sum is: 31626 8.624seconds 
+# There is probably a faster way to get the divisors that I should further research into. 
+# But I am content with the solution taking under 9 seconds for now. 
