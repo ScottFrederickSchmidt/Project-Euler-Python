@@ -14,6 +14,7 @@
 # Euler 38: Takes 40 lines of code. Could be cleaner?
 # Euler 44: Solution takes 86 seconds. Too slow!
 # Euler 46: Dynamic programming method?
+# Euler 47: Only finds right answer quickly if you plug in the function to search within the range.
 # Euler 50: Dynamic programming method?
 
 #I plan on editing this note form on when I find better solutions to show process of my work.
