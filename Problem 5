@@ -2,6 +2,49 @@
 # 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
+#Solution 2 solves in 3 seconds! Solution 1 was 68 seconds
+import time
+start=time.time()
+print("running..")
+
+#This solution involves going top-down (starting at 20) rather than bottom-up.
+#If N is divisible by 20, it means we do not have to check numbers 2, 5, or 10:
+def divide(n):
+    if n%19==0:
+        if n%18==0:
+            if n%17==0:
+                if n%16==0:
+                    if n%15==0:
+                        if n%14==0:
+                            if n%13==0:
+                                if n%12==0:
+                                    if n%11==0:
+                                        if n%9==0:
+                                            if n%8==0:
+                                                if n%7==0:
+                                                    if n%6==0:
+                                                        if n%4==0:
+                                                            if n%3==0:
+                                                                return True
+                                                            
+LIMIT=300_000_000  
+n=20 
+while n< LIMIT:
+    d=divide(n)
+    if d: # once the function returns something True...
+        print(n, time.time()-start, "seconds")
+        break #stop while loop
+    n=n+20 #always gets a num divisble by 20. 
+# There is also a highly probability that the higher numbers such as 19 and 18 are not divisible;
+# Therefore, doing a top-down approach can get faster "False" returns and move onto the next number.
+# See below for original solution 1 which solved the problem in 68 seconds:
+
+
+#########################################################3
+# Project Euler 5: https://projecteuler.net/problem=5
+# 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+# What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
 # Solution1: Correct solution in 68 seconds. 
 import time
 start=time.time()
