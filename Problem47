@@ -8,6 +8,46 @@
 # 646 = 2 × 17 × 19.
 # Find the first four consecutive integers to have four distinct prime factors each. What is the first of these numbers?
 
+
+#Solution 1 now solves the problem in 1.4 seconds! Much better than the original attempt.
+import sympy, time # I found the sympy import 
+start=time.time()
+
+def get_factors(n):
+    f = sympy.factorint(n)
+    f=list(f) # before turning it into a list, it was a dictionary 
+    return f
+
+solution=0
+count=0 # store outside for loop to see if 4 True statements in a row
+for x in range(150_000):
+    f=get_factors(x)
+    if len(f)==4:
+        count=count+1 #see if 4 True statements in a row
+        if count==4:
+            print(x)
+            solution=x #store solution to print later
+            break #stop for loop
+    else:
+        count=0 #set count back to 0
+
+print(solution, "Done.", time.time()-start, "seconds") # 134046 Done. 1.327 seconds
+# The original, previous solution was very ineffective and is almost worth deleting. 
+# But I supppose I will keep it for now as a way to look back at how much better my coding has become.
+
+
+
+##############################################
+# Project Euler 47: https://projecteuler.net/problem=47
+# The first two consecutive numbers to have two distinct prime factors are:
+# 14 = 2 × 7
+# 15 = 3 × 5
+# The first three consecutive numbers to have three distinct prime factors are:
+# 644 = 2² × 7 × 23
+# 645 = 3 × 5 × 43
+# 646 = 2 × 17 × 19.
+# Find the first four consecutive integers to have four distinct prime factors each. What is the first of these numbers?
+
 # Finds correct solution! But takes 25 seconds per 1000 numbers. Need a faster solution:
 import time
 start=time.time()
