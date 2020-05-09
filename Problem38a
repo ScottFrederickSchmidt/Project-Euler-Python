@@ -12,13 +12,13 @@
 import time
 start=time.time()
 
-def check(pand):
+def check(pand): #A 1-9 pangital sorted should end up as 123456789
     t=[]
     for x in str(p):
         t.append( int(x) )
         t.sort()
         s = ''.join(map(str, t)) 
-        if int(s)==123456789:
+        if int(s)==123456789: 
             #print(s, "found", str_p)
             return True
 
