@@ -3,23 +3,24 @@
 # If you are stuck on a problem or have any better ideas for improvement, email me at scott.schmidt1989@yahoo.com 
 
 # Updates! Some problems now have better solutions:
-# Euler 5 now has a solution that solves problem in 3 seconds rather than 68 seconds. May 8, 2020
-# Euler 38 now has a better solution using 20 lines of code instead of 40. May 9, 2020.
-# Euler 44 now has a new solution that solves in 1.4 seconds! Rather than 86 seconds. May 10, 2020
-# Euler 47 now finds solutin within 1.4 seconds until it finds the correct solution. May 9, 2020
+# Problem 5 has new solution that solves problem in 3 seconds rather than 68 seconds. May 8, 2020
+# Problem 35 has new solution that solves problem in under a second! Huge improvement from 100 seconds. May 10, 2020
+# Problem 38 has new solution using 20 lines of code instead of 40. May 9, 2020.
+# Problem 44 has new solution that solves in 1.4 seconds! Rather than 86 seconds. May 10, 2020
+# Problem 47 has new solutin within 1.4 seconds until it finds the correct solution. May 9, 2020
 
 # Here are ideas for improvement in the future:
-# Euler 2: Dynamic programming method?
-# Euler 14: Dynamic programming method?
-# Euler 18: Need to confirm if there is no top-down approach?
-# Euler 31: Try again sometime. Had to research answer. 
-# Euler 32: Takes 40 lines of code.
-# Euler 35: Solution takes 100 seconds. Too slow!
-# Euler 37: Solution takes 43 seconds. Somewhat slow. 
-# Euler 38: Takes 40 lines of code. Could be cleaner?
-# Euler 44: Solution takes 86 seconds. Too slow!
-# Euler 46: Dynamic programming method?
-# Euler 47: Only finds right answer quickly if you plug in the function to search within the range.  
-# Euler 50: Dynamic programming method?
+# Problem 2: Dynamic programming method?
+# Problem 14: Dynamic programming method?
+# Problem 18: Need to confirm if there is no top-down approach?
+# Problem 31: Try again sometime. Had to research answer. 
+# Problem 32: Takes 40 lines of code.
+# Problem 35: Solution takes 100 seconds. Too slow!
+# Problem 37: Solution takes 43 seconds. Somewhat slow. 
+# Problem 38: Takes 40 lines of code. Could be cleaner?
+# Problem 44: Solution takes 86 seconds. Too slow!
+# Problem 46: Dynamic programming method?
+# Problem 47: Only finds right answer quickly if you plug in the function to search within the range.  
+# Problem 50: Dynamic programming method?
 
 # Code should be posted here: https://github.com/ScottFrederickSchmidt/Project-Euler
