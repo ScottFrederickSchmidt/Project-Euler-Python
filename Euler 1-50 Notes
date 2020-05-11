@@ -5,7 +5,8 @@
 # Updates! Some problems now have better solutions:
 # Euler 5 now has a solution that solves problem in 3 seconds rather than 68 seconds. May 8, 2020
 # Euler 38 now has a better solution using 20 lines of code instead of 40. May 9, 2020.
-# Euler 47 now finds solution within 1.4 seconds until it finds the correct solution. May 9, 2020
+# Euler 44 now has a new solution that solves in 1.4 seconds! Rather than 86 seconds. May 10, 2020
+# Euler 47 now finds solutin within 1.4 seconds until it finds the correct solution. May 9, 2020
 
 # Here are ideas for improvement in the future:
 # Euler 2: Dynamic programming method?
