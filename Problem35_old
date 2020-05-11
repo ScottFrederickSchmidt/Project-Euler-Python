@@ -3,25 +3,23 @@
 # There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97.
 # How many circular primes are there below one million?
 
-
 #Solution is correct but takes 96 seconds! Will soon create a second, faster solution:
 import time
 start=time.time()
 print("running..")
 
-def sieves(n):
-    primes=[True]*n # prints x many True statements
-    primes[0]=False # 0 is always not a prime
-    primes[1]=False # 1 is always not a prime
-    for i in range(2, int(n**.5)+1 ): #check through all numbers through the square root of n
-        s=i*i
-        while s<n:
-            primes[s] = False # this number is False
-            s = s+i # looks through all numbers divisible by for example, 2 or 3 and makes them False
-    primes=[x for x in range(n) if primes[x]== True] # gets all remaining numbers that are True
-    return primes
-    
-primes=sieves(1_000_000) # gets primes up to one million
+#Gets primes below a million and stores as a string
+primes=['2']
+n=3
+while n<1_000_000:
+    for j in range(3, int(n**.5)+1):
+        if (n%j==0):
+            break;
+    else:
+        n_str=str(n)
+        primes.append(n_str)
+    n=n+2
+print("got primes")
 
 count=0
 circles=[]
@@ -32,7 +30,7 @@ for p in primes:
     test=[]
     temp_count=0
     while temp in primes: #if rotation in primes
-        temp=temp[-1:]+temp[:-1]
+        temp=temp[-1:]+temp[:-1] # sends last int to front
         test.append(temp)
         temp_count=temp_count+1
         if temp==p: #means temp fully rotated. 
@@ -41,9 +39,10 @@ for p in primes:
             count=count+temp_count
             break
 
-print("Done.", time.time()-start, "seconds")
-print("Solution:", len(set(circles) ) )
-# This version gets prime numbers more than once which is why it is slow. 
+print("Solution:", len(set(circles) ), time.time()-start, "seconds") #Solution: 55. 98.25746 seconds
+# To speed up as this took 98 seconds to solve:
+# Needs to delete any prime with a 0, 2, 4, 5, 8 before checking for rotation. 
+# This version gets prime numbers more than once which is why it is slow?
 # To speed up, should delete out of prime list once a circle number is found? 
 # Will do further research and edit in a faster solution at a later time. 
     
