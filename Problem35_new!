@@ -1,0 +1,58 @@
+# Project Euler 35: https://projecteuler.net/problem=35
+# The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are themselves prime.
+# There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97.
+# How many circular primes are there below one million?
+
+# This code solves the problem in less than one second! Huge improvement from original solution of 86 seconds.
+import time
+start=time.time()
+
+def sieves(n):
+    primes=[True]*n # prints x many True statements
+    primes[0]=False # 0 is always not a prime
+    primes[1]=False # 1 is always not a prime
+    for i in range(2, int(n**.5)+1 ): #check through all numbers through the square root of n
+        s=i*i
+        while s<n:
+            primes[s] = False # this number is False
+            s = s+i # looks through all numbers divisible by for example, 2 or 3 and makes them False
+    primes=[x for x in range(n) if primes[x]== True] # gets all remaining numbers that are True
+    return primes
+    
+primes=sieves(1_000_000) # gets primes up to one million
+# print(primes, "original, before deleting")
+
+#gets numbers that do not have a 0, 2, 4, 5, 6, or 8. They will never be a prime (except for 2 and 5)
+def all(iterable):
+    str_iterable=str(iterable)
+    for element in str_iterable:
+        element=int(element)
+        if element in [0, 2, 4, 5, 6, 8]:
+            return False
+    return True
+
+new_primes=['2', '5'] # These 2 need to be added in manually because all function will delete them
+for p in primes:
+    if all(p):
+        new_primes.append( str(p) ) 
+
+circles=[] #some primes will be counted twice. Must do a set() query at the very end.
+
+for p in new_primes:
+    t=str(p)
+    temp=t[-1:]+t[:-1] #rotate once to get started...
+    rotated=[] # will store rotated primes temporarily and start back empty each new_prime
+    while temp in new_primes: # if it finds a False rotation, should go to next new prime
+        temp=temp[-1:]+temp[:-1] # sends last int to front
+        rotated.append(temp) # keep track of succesful rotated primes
+        if temp==p: #means temp fully rotated. 
+            circles=circles+rotated # add rotated primes to circles (primes)
+            print(count, rotated)
+            break
+
+print("Solved! There are this many circular primes", len(set(circles) ), time.time()-start, "seconds")
+# Solved! There are this many circular primes 55 0.8659 seconds
+# Much better than original solution which took 96 seconds!
+
+# Sources Used:
+# https://docs.python.org/2/library/functions.html#all
