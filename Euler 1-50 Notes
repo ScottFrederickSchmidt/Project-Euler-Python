@@ -1,6 +1,8 @@
-# As of May 2020, I completed problems 1-50 Project Euler problems: https://projecteuler.net/archives
-# This project was fun that kept be busy during the Covid quarantine.
-# If you are stuck on a problem or have any better ideas for improvement, email me at scott.schmidt1989@yahoo.com 
+'''
+As of May 2020, I completed problems 1-50 Project Euler problems: https://projecteuler.net/archives
+These problems have created a strong foundation of learning rather than a lecture or videos.
+If you are stuck on a problem or have any better ideas for improvement, email me at scott.schmidt1989@yahoo.com 
+'''
 
 # Updates! Some problems now have better solutions:
 # Problem 5 has new solution that solves problem in 3 seconds rather than 68 seconds. May 8, 2020
